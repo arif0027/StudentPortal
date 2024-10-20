@@ -1,0 +1,87 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<StudentPortal.Web.Models.Entities.Student>
+
+@{
+    ViewData["Title"] = "Students List";
+}
+
+<h1 class="text-center my-4">Students List</h1>
+
+<div class="container">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subscribed</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.Id</td>
+                    <td>@student.Name</td>
+                    <td>@student.Email</td>
+                    <td>@(student.Subscribed ? "Yes" : "No")</td>
+                    <td>
+                        <div style="display: flex; gap: 5px;">
+                            <a class="btn btn-primary" asp-controller="Students" asp-action="Edit" asp-route-id="@student.Id">
+                                Edit
+                            </a>
+                            <form asp-controller="Students" asp-action="Delete" method="post" style="margin: 0;">
+                                <input type="hidden" name="Id" value="@student.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa; 
+    }
+
+    h1 {
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        color: #343a40; 
+    }
+
+    .table {
+        border-radius: 0.5rem; 
+        overflow: hidden; 
+    }
+
+        .table th, .table td {
+            vertical-align: middle;
+        }
+
+    .btn {
+        transition: background-color 0.3s, transform 0.2s; 
+    }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+    .table-dark {
+        background-color: #343a40; 
+        color: white; 
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #e9ecef;
+    }
+</style>

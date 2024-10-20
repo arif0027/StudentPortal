@@ -1,0 +1,87 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model StudentPortal.Web.Models.AddStudentViewModel
+
+@{
+    ViewData["Title"] = "Add Student";
+}
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Add Student</h1>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success mt-3" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
+
+    <form method="post" class="border p-4 rounded shadow-sm bg-light">
+        <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input type="text" class="form-control" asp-for="Name" placeholder="Enter student's name" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" asp-for="Email" placeholder="Enter student's email" required />
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" asp-for="Phone" placeholder="Enter student's phone" required />
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="Subscribed" asp-for="Subscribed" />
+            <label class="form-check-label" for="Subscribed">Subscribed</label>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Save</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    body {
+        background-color: #f2f2f2; 
+    }
+
+    h1 {
+        font-family: 'Arial', sans-serif;
+        color: #343a40; 
+    }
+
+    .container {
+        max-width: 600px; 
+        margin: auto; 
+    }
+
+    .form-control {
+        border-radius: 0.5rem; 
+        transition: border-color 0.3s; 
+    }
+
+        .form-control:focus {
+            border-color: #007bff; 
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+        }
+
+    .btn {
+        transition: background-color 0.3s, transform 0.2s; 
+    }
+
+        .btn:hover {
+            background-color: #0056b3; 
+            transform: scale(1.05); 
+        }
+
+    .alert {
+        font-weight: bold;
+    }
+</style>
